@@ -1,0 +1,50 @@
+<form action="">
+    <div class="contenedor-cerrar">
+        <button type="button" class="boton-icono">
+            <span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="3.5"
+                    stroke="currentColor"
+                >
+                    <path d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </span>
+        </button>
+    </div>
+
+    <div class="campo-formulario">
+        <label for="nombre-usuario">Nombre de usuario</label>
+        <input
+            type="text"
+            id="nombre-usuario"
+            name="nombre-usuario"
+            required
+            [(ngModel)]="usuario.nombreUsuario"
+            #nombreUsuario="ngModel"
+        />
+    </div>
+    <div class="campo-formulario">
+        <label for="contrasenia">Contraseña</label>
+        <input
+            type="password"
+            id="contrasenia"
+            name="contrasenia"
+            required
+            [(ngModel)]="usuario.contrasenia"
+            #contrasenia="ngModel"
+        />
+    </div>
+
+    <div class="contenedor-botones">
+        <button type="button" class="boton-formulario">
+            <span> Borrar </span>
+        </button>
+        <button type="submit" class="boton-formulario">
+            <span> Iniciar Sesión </span>
+        </button>
+    </div>
+</form>
+

@@ -1,1 +1,153 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+@import '@sweetalert2/theme-minimal';
+
+* {
+    font-family: 'Exo', sans-serif;
+}
+
+body {
+    background: #4e54c8;
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.boton-animado {
+    background: transparent;
+    border: 0.5rem solid #fff;
+    height: 5.7rem;
+    width: 19rem;
+    font-size: 2.2rem;
+    color: #fff;
+    position: relative;
+    transition: color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        border-color: #ff9f1c;
+        color: #ff9f1c;
+    }
+    &:hover::before {
+        width: 0;
+    }
+    &:hover::after {
+        height: 0;
+    }
+    &:active {
+        border-width: 0.25rem;
+    }
+    & span {
+        position: relative;
+
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+    }
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        background: #4e54c8;
+        z-index: 1;
+        transition: all 0.3s;
+    }
+    &::before {
+        width: calc(100% - 4rem);
+        height: calc(101% + 1rem);
+        top: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &::after {
+        height: calc(100% - 3rem);
+        width: calc(101% + 1rem);
+        left: -0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+form {
+    border: 0.3rem solid #fff;
+    padding: 32px 64px;
+    max-width: 28rem;
+}
+
+.campo-formulario {
+    margin: 1.5rem 0;
+}
+
+label {
+    color: #fff;
+    opacity: 0.8;
+    font-size: 1rem;
+}
+
+input {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    font-size: 1.5rem;
+    border-bottom: 0.3rem #fff solid;
+    transition: border-bottom-color 0.3s;
+    color: #fff;
+    caret-color: #fff;
+    &:focus {
+        outline: none;
+        border-bottom-color: #ff9f1c;
+    }
+}
+
+.contenedor-botones {
+    width: 100%;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.boton-formulario {
+    @extend .boton-animado;
+    border-width: 0.3rem;
+    height: 3.42rem;
+    width: 11.4rem;
+    font-size: 1.32rem;
+    & span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &:active {
+        border-width: 0.15rem;
+    }
+    &::before {
+        width: calc(100% - 2.4rem);
+        height: calc(101% + 0.6rem);
+        top: -0.3rem;
+    }
+    &::after {
+        height: calc(100% - 1.8rem);
+        width: calc(101% + 0.6rem);
+        left: -0.3rem;
+    }
+}
+
+.boton-icono {
+    @extend .boton-formulario;
+    width: 3.42rem;
+    &::before {
+        width: calc(100% - 1.8rem);
+    }
+}
+
+.contenedor-cerrar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ng-invalid:not(form).ng-touched {
+    border-bottom-color: #f71735;
+}
