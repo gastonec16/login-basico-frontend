@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { NavigationEnd, Router, RouterModule } from '@angular/router'
+import { AppComponent } from 'src/app/app.component'
 
 @Component({
     selector: 'app-inicio',
@@ -10,6 +11,8 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router'
     styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent {
+    appComponent = inject(AppComponent)
+
     router = inject(Router)
 
     audioFondo: HTMLAudioElement
@@ -29,7 +32,11 @@ export class InicioComponent {
     }
 
     ngOnInit(): void {
-        this.audioFondo.play()
+        if (this.appComponent.estaLogueado()) {
+            this.audioFondo.play()
+        } else {
+            this.audioFondo.pause()
+        }
     }
 
     controlarAudio() {
@@ -38,6 +45,12 @@ export class InicioComponent {
         } else {
             this.audioFondo.pause()
         }
+    }
+
+    cerrarSesion() {
+        this.appComponent.usuarioLogueado.set(this.appComponent.usuarioVacio)
+        this.appComponent.estaLogueado.set(false)
+        this.audioFondo.pause()
     }
 }
 

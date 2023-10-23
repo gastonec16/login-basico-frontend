@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
-import { RouterModule } from '@angular/router'
+import { Router, RouterModule } from '@angular/router'
 import { RegistrarseInterface } from 'src/app/interfaces/usuario.interface'
 import { UsuarioService } from 'src/app/services/usuario.service'
 import Swal from 'sweetalert2'
@@ -15,6 +15,7 @@ import Swal from 'sweetalert2'
 })
 export class RegistrarseComponent {
     usuarioService = inject(UsuarioService)
+    router = inject(Router)
 
     usuario = {
         nombre: '',
@@ -61,6 +62,8 @@ export class RegistrarseComponent {
                             text: 'Ya puede iniciar sesión',
                             icon: 'success'
                         })
+                        formulario.reset()
+                        this.router.navigate(['/'])
                     } else {
                         Swal.fire({
                             title: 'Error',
@@ -77,11 +80,19 @@ export class RegistrarseComponent {
                     })
             })
         } else {
-            Swal.fire({
-                title: 'Error',
-                text: 'Ingrese los datos faltantes',
-                icon: 'error'
-            })
+            if (!/@[^ ]/.test(email)) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El email no es válido',
+                    icon: 'error'
+                })
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Ingrese los datos faltantes',
+                    icon: 'error'
+                })
+            }
         }
     }
 }

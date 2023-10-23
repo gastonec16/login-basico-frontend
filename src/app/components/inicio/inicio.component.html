@@ -1,4 +1,4 @@
-<div class="contenedor-botones">
+<div *ngIf="!appComponent.estaLogueado()" class="contenedor-botones">
     <button type="button" class="boton-animado" routerLink="/registrarse">
         <span> Registrarse </span>
     </button>
@@ -7,7 +7,7 @@
     </button>
 </div>
 
-<!-- <div>
+<div *ngIf="appComponent.estaLogueado()">
     <button type="button" class="boton-play" (click)="controlarAudio()">
         <span>
             <svg
@@ -26,7 +26,7 @@
         </span>
     </button>
 
-    <button type="button" class="boton-cerrar">
+    <button type="button" (click)="cerrarSesion()" class="boton-cerrar">
         <span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@
     </button>
 
     <div class="contenedor-bienvenido">
-        <h1>Bienvenido</h1>
+        <h1>Bienvenido {{ appComponent.usuarioLogueado().nombre }}</h1>
     </div>
 
     <ul class="cuadrados">
@@ -56,5 +56,5 @@
         <li></li>
         <li></li>
     </ul>
-</div> -->
+</div>
 

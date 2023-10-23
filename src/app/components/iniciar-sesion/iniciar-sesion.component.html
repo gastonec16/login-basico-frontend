@@ -1,6 +1,6 @@
-<form action="">
+<form #iniciarSesionForm="ngForm" (submit)="iniciarSesion($event)">
     <div class="contenedor-cerrar">
-        <button type="button" class="boton-icono">
+        <button type="button" class="boton-icono" routerLink="/">
             <span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@
     </div>
 
     <div class="contenedor-botones">
-        <button type="button" class="boton-formulario">
+        <button type="button" (click)="iniciarSesionForm.reset()" class="boton-formulario">
             <span> Borrar </span>
         </button>
         <button type="submit" class="boton-formulario">
